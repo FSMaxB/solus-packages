@@ -1,0 +1,12 @@
+name: gnat
+version: 2017
+release: 1
+source:
+    - http://mirrors.cdn.adacore.com/art/591c6d80c7a447af2deed1d7: b942bcac20dea39748b39f8b624d9619f60a8dee2e8195dbe3829c835b0956e6
+license: GPL-2.0
+component: programming.tools
+summary: Binary ADA toolchain.
+description: |
+    Binary version of GNAT. For Bootstrapping gcc-ada.
+install: |
+    make ins-all prefix="$installdir/opt/gnat"
