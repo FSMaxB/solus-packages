@@ -1,2 +1,5 @@
 *.eopkg
 *.xml
+*.bz2
+*.gz
+*.xz
