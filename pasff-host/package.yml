@@ -1,0 +1,21 @@
+name: passff-host
+version: 1.1
+release: 1
+source:
+    - https://github.com/passff/passff/archive/1.1.tar.gz: 31beb09c3899555540f72226e05e5d0063e8b7a4c9a772d4aaacb0060482bf18
+license: GPL-2.0
+component: network.web.browser
+summary: PassFF native messaging host application for Firefox, Chromium, Chrome, Vivaldi.
+description: PassFF native messaging host application for Firefox, Chromium, Chrome, Vivaldi.
+setup: |
+    sed -i -e 's-PLACEHOLDER-/usr/lib64/passff/passff.py-g' "$workdir/src/host/passff.json"
+install: |
+    install -D -m 00644 "$workdir/src/host/passff.json" "$installdir/usr/lib64/mozilla/native-messaging-hosts/passff.json"
+    install -D -m 00644 "$workdir/src/host/passff.json" "$installdir/etc/opt/chrome/native-messaging-hosts/passff.json"
+    install -D -m 00644 "$workdir/src/host/passff.json" "$installdir/etc/chromium/native-messaging-hosts/passff.json"
+    install -D -m 00644 "$workdir/src/host/passff.json" "$installdir/etc/vivaldi/native-messaging-hosts/passff.json"
+    install -D -m 00755 "$workdir/src/host/passff.py" "$installdir/usr/lib64/passff/passff.py"
+builddeps:
+    - sed
+rundeps:
+    - python3
