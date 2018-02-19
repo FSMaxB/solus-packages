@@ -1,0 +1,27 @@
+name: gtkwave
+version: 3.3.87
+release: 1
+source:
+    - http://gtkwave.sourceforge.net/gtkwave-3.3.87.tar.gz : c6e552716876c8b88c8f6e36e3614a8c53a32cef7895e2c1e6e608daf0ee5b7a
+license: GPL-2.0-or-later
+component : programming.tools
+summary: Fully featured GTK+ based wave viewer.
+description: |
+    Fully featured GTK+ based wave viewer which reads LXT, LXT2, VZT, FST, and GHW files as well as standard Verilog VCD/EVCD files and allows their viewing.
+setup: |
+    %configure --enable-struct-pack
+build: |
+    %make
+install: |
+    %make_install
+builddeps:
+    - pkgconfig(gtk+-2.0)
+    - pkgconfig(gconf-2.0)
+    - pkgconfig(gtk+-unix-print-2.0)
+    - pkgconfig(gdk-pixbuf-2.0)
+    - pkgconfig(tcl)
+    - pkgconfig(tk)
+    - pkgconfig(zlib)
+    - pkgconfig(liblzma)
+    - bzip2-devel
+    - gperf
