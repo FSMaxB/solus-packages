@@ -1,0 +1,38 @@
+name: unison-gtk
+version: 2.48.4
+release: 1
+source:
+    - https://github.com/bcpierce00/unison/archive/2.48.4.tar.gz: 9f23657614dc8954bc6c07aaad2ef2f7674aeb47164181097be1249270ff9463
+license: GPL-3.0-or-later
+component: network.util
+summary: Unison is a file-syncrhonization tool for Unix and Windows.
+description: |
+    Unison is a file-synchronization tool for OSX, Unix, and Windows. It allows two replicas of a collection of files and directories to be stored on different hosts (or different disks on the same host), modified separately, and then brought up to date by propagating the changes in each replica to the other.
+setup: |
+    #sed 's/region_of_string/region_of_byes/' -i src/uigtk2.ml
+build: |
+    for ui in gtk2 text; do
+        cp -ar . build || true
+        #pushd build
+        export CFLAGS=
+        make UISTYLE=$ui DEBUGGING=false
+        THREADS=true
+        mv src/unison src/unison-$ui
+        mv src/unison-* ..
+        make clean
+        #popd
+        rm -rf build
+    done
+install: |
+    mkdir -p "$installdir/usr/bin"
+    install -m755 unison-{gtk2,fsmonitor,text} "$installdir/usr/bin"
+    ln -s unison-text "$installdir/usr/bin/unison"
+builddeps:
+    - emacs
+    - ocaml
+    - ocamlbuild
+    - libgtk-2-devel
+    - pango-devel
+    - lablgtk2
+replaces:
+    - unison
