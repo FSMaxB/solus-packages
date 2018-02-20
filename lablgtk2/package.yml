@@ -1,0 +1,23 @@
+name: lablgtk2
+version: 2.18.5
+release: 1
+source:
+    - https://forge.ocamlcore.org/frs/download.php/1627/lablgtk-2.18.5.tar.gz: 2bf251db21c077fdd26c035ea03edd8fe609187f908e520e87a8ffdd9c36d233
+license: LGPL
+component: desktop.core
+summary: An Objective Caml interface to gtk2
+description: |
+    LablGtk is an OCaml interface to GTK+ 1.2 and 2.x. It provides a strongly-typed, yet comfortable, object-oriented interface compatible with GTK+'s dynamic typing through OCaml's rich type system. Most widgets and methods are available, along with many examples.
+setup: |
+    %configure --without-glade --without-gnomeui --without-gnomecanvas --without-panel --without-gtkspell --without-gtksourceview
+build: |
+    make world
+    make opt
+install: |
+    make DESTDIR="$installdir" old-install
+    install -Dm644 META "$installdir/usr/lib64/ocaml/lablgtk2"
+builddeps:
+    - ocaml
+    - libgtk-2-devel
+    - librsvg-devel
+    - libgtksourceview2-devel
