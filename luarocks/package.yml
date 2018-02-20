@@ -1,0 +1,25 @@
+name: luarocks
+version: 2.4.3
+release: 1
+source:
+    - http://luarocks.github.io/luarocks/releases/luarocks-2.4.3.tar.gz: 4d414d32fed5bb121c72d3ff1280b7f2dc9027a9bc012e41dfbffd5b519b362e
+license: custom
+component: programming
+summary: Deployment and management system for Lua modules.
+description: |
+    It allows you to install Lua modules as self-contained packages called rocks, which also contain version dependency information. This information can be used both during installation, so that when one rock is requested all rocks it depends on are installed as well, and also optionally at run time, so that when a module is required, the correct version is loaded. LuaRocks supports both local and remote repositories, and multiple local rocks trees.
+setup: |
+    ./configure --prefix=/usr \
+        --sysconfdir=/etc/luarocks \
+        --lua-version=5.3 \
+        --with-lua-include=/usr/include \
+        --with-downloader=curl \
+        --versioned-rocks-dir
+build: |
+    %make
+install: |
+    %make_install
+builddeps:
+    - lua-devel
+rundeps:
+    - curl
