@@ -1,0 +1,32 @@
+name: heidisql
+version: 9.5.5253
+release: 1
+source:
+    - https://www.heidisql.com/downloads/releases/HeidiSQL_9.5_Portable.zip: a50accd44f83b98bc1bdb7cf07b02ac2a240bb34ad08ac07dd9a9028fcdfdab7
+    - https://www.heidisql.com/builds/heidisql32.r5253.exe: f20a2a46e477687a43618e517038ab6aa6cd35cdb21dbc72f9d1247380ca3b13
+license: GPL-2.0
+component : database
+summary: A lightweight GUI for managing MySQL, PostgreSQL, and Microsoft SQL databases.
+description: |
+    HeidiSQL is a useful and reliable tool designed for web developers using the popular MySQL server, Microsoft SQL databases and PostgreSQL
+install: |
+    install -d -m755 "$installdir/usr/share/heidisql"
+    cp -r * "$installdir/usr/share/heidisql/"
+
+    # Overwrite with nightly build file
+    cp "$sources/heidisql32.r5253.exe" "$installdir/usr/share/heidisql/heidisql.exe"
+
+    # Set proper permissions
+    find "$installdir/usr/share/heidisql" -type f -exec chmod 644 "{}" \;
+    find "$installdir/usr/share/heidisql" -type d -exec chmod 755 "{}" \;
+
+    # Install the startup script
+    install -Dm755 "$pkgfiles/heidisql.sh" "$installdir/usr/bin/heidisql"
+
+    # Install the icon
+    install -Dm644 "$pkgfiles/heidisql.png" "installdir/usr/share/pixmaps/heidisql.png"
+
+    # Install the .desktop
+    install -Dm644 "$pkgfiles/heidisql.desktop" "$installdir/usr/share/applications/heidisql.desktop"
+rundeps:
+    - wine-32bit
