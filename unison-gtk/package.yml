@@ -24,8 +24,7 @@ install: |
     install -m755 unison-{gtk2,fsmonitor,text} "$installdir/usr/bin"
     ln -s unison-text "$installdir/usr/bin/unison"
     install -Dm644 unison-2.48.4/icons/U.svg "$installdir/usr/share/pixmaps/unison.svg"
-    mkdir -p "$installdir/usr/share/applications"
-    echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=unison\nComment=File synchronisation tool for X11\nTryExec=unison-gtk2\nExec=unison-gtk2\nTerminal=false\nType=Application\nCategories=GTK;Application;Network;\nIcon=unison.svg\nStartupNotify=true\n" > "$installdir/usr/share/applications/unison-gtk2.desktop"
+    install -Dm644 "$pkgfiles/unison-gtk.desktop" "$installdir/usr/share/applications/unison-gtk.desktop"
 
 builddeps:
     - emacs
