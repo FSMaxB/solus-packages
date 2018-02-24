@@ -1,0 +1,24 @@
+name: autossh
+version: 1.4e
+release: 1
+source:
+    - http://www.harding.motd.ca/autossh/autossh-1.4e.tgz: 9e8e10a59d7619176f4b986e256f776097a364d1be012781ea52e08d04679156
+license: custom
+component : network.remote
+summary: Automatically restart SSH sessions and tunnels
+description: |
+    Automatically restart SSH sessions and tunnels
+setup: |
+    %configure
+build: |
+    %make
+install: |
+    install -D -m755 autossh "$installdir/usr/bin/autossh"
+    install -D -m644 CHANGES "$installdir/usr/share/doc/autossh/CHANGES"
+    install -D -m644 README "$installdir/usr/share/doc/autossh/README"
+    install -D -m644 autossh.host "$installdir/usr/share/autossh/examples/autossh.host"
+    install -D -m644 rscreen "$installdir/usr/share/autossh/examples/rscreen"
+    install -D -m644 autossh.1 "$installdir/usr/share/man/man1/autossh.1"
+    install -D -m644 "$pkgfiles/LICENSE" "$installdir/usr/share/licenses/autossh/LICENSE"
+builddeps:
+    - openssh
