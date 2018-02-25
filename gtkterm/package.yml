@@ -1,0 +1,21 @@
+name: gtkterm
+version: 0.99.7
+release: 1
+source:
+    - git|https://github.com/zdavkeos/gtkterm.git: 421f834274b01e9342b74cf88561dd6449d23dfd
+license: GPL-2.0
+component : network.remote
+summary: A gtk+ based serial port communication program
+description: |
+    A gtk+ based serial port communication program
+setup: |
+    sed -i 's|"/var/lock"|"/var/lock/lockdev"|' src/serie.h
+    %configure --mandir=/usr/share/man
+build: |
+    %make
+install: |
+    %make_install
+    install -Dm644 "$pkgfiles/gtkterm.desktop" "$installdir/usr/share/applications/gtkterm.desktop"
+builddeps:
+    - pkgconfig(vte)
+    - pkgconfig(gtk+-2.0)
