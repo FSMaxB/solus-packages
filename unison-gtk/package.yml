@@ -27,7 +27,6 @@ install: |
     install -Dm644 "$pkgfiles/unison-gtk.desktop" "$installdir/usr/share/applications/unison-gtk.desktop"
 
 builddeps:
-    - emacs
     - ocaml
     - ocamlbuild
     - libgtk-2-devel
