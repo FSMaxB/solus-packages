@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=2017.3.4
+Type=Application
+Name=IntelliJ IDEA Community Edition
+Comment=Intelligent Java IDE
+Exec="/opt/intellij/bin/idea.sh" %f
+Icon=/opt/intellij/bin/idea.png
+Categories=Development;IDE;
+Terminal=false
+StartupNotify=true
+StartupWMClass=jetbrains-idea-ce

@@ -1,0 +1,19 @@
+name: intellij-idea-community-edition
+version: 2017.3.4
+release: 1
+source:
+    - https://download.jetbrains.com/idea/ideaIC-2017.3.4-no-jdk.tar.gz: eeba2eb6b92fa6eb93c0b0864c0d0fd7b6a1b1d210a1fc2fb32c06f882c84abf
+license: Apache-2.0
+component: programming.tools
+summary: IntelliJ Idea IDE (community edition)
+description: |
+    IntelliJ Idea IDE (community edition)
+install: |
+    mkdir -p "$installdir/opt/intellij/"
+    mv * "$installdir/opt/intellij/"
+    mkdir -p "$installdir/usr/share/applications"
+    install -m644 "$pkgfiles/intellij.desktop" "$installdir/usr/share/applications/intellij.desktop"
+rundepends:
+    - openjdk-8
+    - giflib
+    - libxtst
