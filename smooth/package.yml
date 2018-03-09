@@ -1,0 +1,25 @@
+name: smooth
+version: 0.8.74.0.1
+release: 1
+source:
+    - https://sourceforge.net/projects/smooth/files/smooth/0.8.74-0-pre1/smooth-0.8.74.0-pre1.tar.gz: 3bcbdf86a48040bd75142a495051e59427b81eb5b55af28a18fbf84c81005a57
+license: Artistic-2.0
+component: multimedia.audio
+summary: An object oriented C++ class library for Windows, OS X, Linux and most Unix-like operating systems
+description: An object oriented C++ class library for Windows, OS X, Linux and most Unix-like operating systems
+description: |
+    A simple input method for ibus that allows you to enter unicode emoji and other symbols by name
+setup: |
+    patch -p1 -i "$pkgfiles/glib2-include.patch"
+    find . -type f -exec sed -i 's!/usr/local!/usr!g' {} \;
+build: |
+    %make
+install: |
+    %make_install
+builddeps:
+    - fribidi-devel
+    - libgtk-3-devel
+    - libjpeg-turbo-devel
+    - libxmu-devel
+    - curl-devel
+    - bzip2-devel
